@@ -80,7 +80,7 @@ We are using the *Integration Manager* workflow [Figure 5-2](http://progit.org/b
 
         git push origin feature
 
-1. Within your levi fork on GitHub, issue a *pull request*.
+1. Within your levi fork on GitHub, switch to your feature branch (via the drop-down), and issue a *pull request*. Double-check that the pull request is "from" your branch and "into" the master at roy98102.
 1. Anyone can comment on the code. Converse! Look for errors, not style.
 1. Any "Integration Manager" (anyone listed as a collaborator on the roy98102/levi repo) will test the commits, as described at GitHub at the bottom of the page where the *pull request* is discussed. It says this:
 
@@ -117,7 +117,7 @@ We are using the *Integration Manager* workflow [Figure 5-2](http://progit.org/b
         git br -d feature
         git push origin :feature # to delete from GitHub too
 
-That's basically the "Merge workflow" under "DISTRIBUTED WORKFLOWS" [here](http://www.kernel.org/pub/software/scm/git/docs/gitworkflows.html).
+That's basically the "Merge workflow" under "DISTRIBUTED WORKFLOWS" [here](http://www.kernel.org/pub/software/scm/git/docs/gitworkflows.html). Eventually, we may pull into an `integration` branch, but `master` is fine for now.
 
 Remember: Branch early and often!
 #
