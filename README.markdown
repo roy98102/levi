@@ -124,6 +124,10 @@ Remember: Branch early and often!
 ### Fork queues
 If you notice GitHub's [fork queues](https://github.com/blog/270-the-fork-queue), ignore them.
 
+## PivotalTracker integration
+
+Just testing, for now.
+
 ### Notes
 * [Useful cheatsheet.](http://cheat.errtheblog.com/s/git)
 * I am working on these notes by modifying these notes.
