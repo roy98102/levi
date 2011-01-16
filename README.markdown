@@ -126,7 +126,10 @@ If you notice GitHub's [fork queues](https://github.com/blog/270-the-fork-queue)
 
 ## PivotalTracker integration
 
-Just testing, for now.
+* To finish a feature:
+        git commit -m 'Message [finishes #123456]'
+* To fix a bug:
+	git commit -m 'MyMessage [fixes #987654]'
 
 ### Notes
 * [Useful cheatsheet.](http://cheat.errtheblog.com/s/git)
