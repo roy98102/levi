@@ -1,36 +1,51 @@
-# 501k demo site
+# 501k Website
 
 This website uses Ruby on Rails.
 
+
 ## Git'n started
 
-First, install `git` somehow. On the Mac, you should also install `gitx`.
+1. Install `ruby-1.9.2` somehow.
+    * If you have `rvm` (*nix):
+            rvm install ruby-1.9.2
+            rvm use ruby-1.9.2
+            rvm gemset create levi
+    
+      `rvm` is not required though.
 
-Then, install `ruby-1.9.2` somehow. If you have `rvm` (*nix):
-    rvm install ruby-1.9.2
-    rvm use ruby-1.9.2
-    rvm gemset create levi
+1. Install `git` somehow.
 
-`rvm` is not required though.
+    * On the Mac, you should also install `gitx`. You might want this in ~/.gitconfig
+            [core]
+            autocrlf = input
+            safecrlf = warn
 
-Then:
-    git clone git@github.com:roy98102/levi.git
-    cd levi
-    # Answer 'y' if it asks you to trust the .rvmrc file.
-    gem env gemdir
+    * On Windows, you might want [GitExtensions](http://code.google.com/p/gitextensions) for Visual Studio, or [TortoiseGit](http://code.google.com/p/tortoisegit/). For command-line use, [mysysgit](https://git.wiki.kernel.org/index.php/MSysGit:InstallMSysGit). You will also want this in your .git/config (or ~/.gitconfig):
+            [core]
+            autocrlf = true
+            safecrlf = warn
 
-If you are using rvm, that should show something like:
-    /Users/bgates/.rvm/gems/ruby-1.9.2-p0@levi
+1. Create a GitHub account.
 
-Next:
-    gem install bundler
-    bundle install
+1. Go to [roy98102/levi](https://github.com/roy98102/levi) and click "Fork".
 
-Finally,
-    rails server -p 3000
+1. Then:
+        git clone git@github.com:${USER}/levi.git
+        cd levi
+        # Answer 'y' if it asks you to trust the .rvmrc file.
+        gem env gemdir
 
-Visit:
-  [http://localhost:3000](http://localhost:3000)
+    If you are using rvm, that should show something like:
+        ~/.rvm/gems/ruby-1.9.2-p0@levi
+
+1. Next:
+        git remote add upstream git://github.com/roy98102/levi.git
+        gem install bundler
+        bundle install
+        rails server -p 3000
+
+1. Visit:
+    [http://localhost:3000](http://localhost:3000)
 
 You should see the default Rails welcome screen:
 > Welcome aboard
@@ -54,11 +69,12 @@ You should see the default Rails welcome screen:
 
 ## Integration procedure.
 
-We are using the *Integration Manager* workflow [Figure 5-2](http://progit.org/book/ch5-1.html). I will write some notes on that after I test it.
+We are using the *Integration Manager* workflow [Figure 5-2](http://progit.org/book/ch5-1.html).
 
 1. Develop a feature in a branch.
 
         git checkout -b feature master
+        # Code, commit, code, commit, ...
 
 1. When done, push the branch to your GitHub repo.
 
@@ -72,11 +88,14 @@ We are using the *Integration Manager* workflow [Figure 5-2](http://progit.org/b
 
    1. Check out a new branch to test the changes — run this from your project directory
  
+            git clone git@github.com:roy98102/levi.git levi
+	    cd levi
             git checkout -b cdunn2001-feature master
 
    2. Bring in cdunn2001's changes and test
      
             git pull https://cdunn2001@github.com/cdunn2001/pulltest.git feature
+            # Test.
     
    3. Merge the changes and update the server
      
@@ -84,41 +103,26 @@ We are using the *Integration Manager* workflow [Figure 5-2](http://progit.org/b
             git merge cdunn2001-feature
             git push origin master
 
-    4. With that, the `feature` branch will *not* exist in roy98102, which is good. Only the changes on it have been merged into the `master` branch. 
+      With that, the `feature` branch will *not* exist in roy98102, which is good. Only the changes on it have been merged into the `master` branch. 
+   4. Close the pull request.
 
-1. The submitter (and others) may then pull in the latest master from roy98102.
+1. Sync up.
 
-	git remote add upstream git://github.com/roy98102/levi.git
-	git fetch upstream
-        git checkout master
-        git merge upstream/master
-	git push origin master
+	git checkout master
+	git pull upstream master
 
-1. At that point, the submitter may delete the branch from his own repo.
+1. At that point, you (the submitter) may continue development on the feature branch, since everything is in sync. (If you are not sure, run `gitx`.) If you are done, you may delete the feature branch from your own repo, if you want. Optional:
 
         git checkout master
         git br -d feature
-        git push origin :feature # to delete from GitHub
+        git push origin :feature # to delete from GitHub too
 
-That's the full solution, but we can skip steps for simple changes that do not require testing. For those simple cases, we can take advantage of GitHub's [fork queues](https://github.com/blog/270-the-fork-queue). With that, the merge can occur entirely within GitHub.
-
-The strange thing about the fork-queue is that *any* push you do to your GitHub repo will show up in the fork-queue. That makes your GitHub repo (usually called `origin`) very public.
-
-Here are the simplified steps:
-
-1. Develop on a feature branch.
-1. Push to GitHub.
-1. Issue *pull request* (but people could see it by checking their fork-queue* even if you do not).
-1. Someone logs into roy98102 and checks the fork-queue. If the change is simple, he applies it to `master` (or eventually, to an integration branch), and updates the branch, all in GitHub.
-1. Submitter will now see the merge-commit on his own fork-queue, which he can apply to `master` within GitHub.
-1. He should then pull the change into his local `master`, just to stay in sync.
-    git fetch origin
-    git checkout master
-    git merge origin/master
-
-Try a few simple pull requests on your own `experimental` branch. I'll merge them into a throw-away `trash` branch for now.
+That's basically the "Merge workflow" under "DISTRIBUTED WORKFLOWS" [here](http://www.kernel.org/pub/software/scm/git/docs/gitworkflows.html).
 
 Remember: Branch early and often!
+#
+### Fork queues
+If you notice GitHub's [fork queues](https://github.com/blog/270-the-fork-queue), ignore them.
 
 ### Notes
 * [Useful cheatsheet.](http://cheat.errtheblog.com/s/git)
