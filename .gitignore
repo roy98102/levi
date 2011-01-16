@@ -1,4 +1,26 @@
-.bundle
-db/*.sqlite3
-log/*.log
-tmp/**/*
+# Rails crap (corrected)
+/.bundle
+/db/*.sqlite3
+/log/*.log
+/tmp/*/
+#tmp/**/* # This is a myth.
+
+# Mac crap
+.DS_Store*
+.ehthumbs.db
+Icon?
+Thumbs.db
+
+# Windows crap
+*.suo 
+*.dll 
+*.pdb 
+*.cache
+
+# Other crap
+*~
+*.bak
+*.swp
+_ReSharper*
+.svn/
+
