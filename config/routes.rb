@@ -55,4 +55,9 @@ RoyLevi::Application.routes.draw do
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id(.:format)))'
+  # map.home '/',  :controller => 'main', :action => 'index' 
+  root :to => "main#index"
+  match '/about', :controller => 'main', :action => 'about'
+  match '/contact', :controller => 'main', :action => 'contact'
+  match '/privacy', :controller => 'main', :action => 'privacy'
 end
