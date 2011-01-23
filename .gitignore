@@ -24,3 +24,7 @@ Thumbs.db
 _ReSharper*
 .svn/
 
+# Drop all images, to keep file sizes small.
+*.jpg
+*.gif
+*.png
