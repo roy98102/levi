@@ -31,11 +31,11 @@
 
 	<div id="header" class="container">
 		<div id="login">
-          <%= link_to "Register a New user", new_user_session_path %> | <%= link_to "Login", new_user_registration_path %> | <%= link_to "Logout", destroy_user_path %>
+          <%= link_to "Register a New user", new_user_session_path %> | <%= link_to "Login", new_user_registration_path %> | <%= link_to "Logout", destroy_user_session_path %>
 		</div>		
 	 	<a href="/">
 		 	<div id="logo">
-				<img alt="Logo / Header" height="60" width="650">
+              <%= image_tag "logo.png", :size=>"650x60" %>
 		  </div>
 	  </a>
 	</div>
