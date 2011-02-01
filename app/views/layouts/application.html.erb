@@ -32,7 +32,7 @@
 	<div id="header" class="container">
 		<div id="login">
 					<% if user_signed_in? %>
-						Signed in as <%= current_user.email %>. <%= link_to "Sign out", destroy_user_session_path %>
+						Welcome back <%= current_user.name %> | <%= link_to "Account", edit_user_registration_path %> | <%= link_to "Sign out", destroy_user_session_path %>
 					<% else %>
           	<%= link_to "Register a New User", new_user_registration_path %> | <%= link_to "Sign in", new_user_session_path %>
 					<% end %>
@@ -56,10 +56,9 @@
 		</ul>
 	</div>
 
-       <p class="notice"><%= notice %></p>
-       <p class="alert"><%= alert %></p>
-
 	<div id="content" class="container">
+		<p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>		
 		<%= yield %>
 	</div>
 

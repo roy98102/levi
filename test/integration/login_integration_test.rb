@@ -11,10 +11,10 @@ class LoginIntegrationTest < ActionController::IntegrationTest
     get "/users/sign_up"
     assert_equal 200, status
     
-    post "/users", :user=>{:email=>"test@example.com", :password=>"password", :password_confirmation=>"password"}
+    post "/users", :user=>{:name=>"Test User", :email=>"test@example.com", :password=>"password", :password_confirmation=>"password"}
     assert_equal 302, status
     follow_redirect!
-    assert_select "div#login", /Signed in as test@example.com/
+    assert_select "div#login", /Welcome back/
     
     get "/users/sign_out"
     assert_equal 302, status
@@ -26,7 +26,7 @@ class LoginIntegrationTest < ActionController::IntegrationTest
     post "/users/sign_in", :user=>{:email=>"test@example.com", :password=>"password"}
     assert_equal 302, status
     follow_redirect!
-    assert_select "div#login", /Signed in as test@example.com/
+    assert_select "div#login", /Welcome back/
   end
   
   def test_invalid_login
