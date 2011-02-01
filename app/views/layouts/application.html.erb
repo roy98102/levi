@@ -34,7 +34,7 @@
 					<% if user_signed_in? %>
 						Signed in as <%= current_user.email %>. <%= link_to "Sign out", destroy_user_session_path %>
 					<% else %>
-          	<%= link_to "Register a New user", new_user_registration_path %> | <%= link_to "Sign in", new_user_session_path %>
+          	<%= link_to "Register a New User", new_user_registration_path %> | <%= link_to "Sign in", new_user_session_path %>
 					<% end %>
 		</div>		
 	 	<a href="/">
