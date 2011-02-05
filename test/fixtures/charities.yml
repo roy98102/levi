@@ -9,3 +9,7 @@ pangea:
   name: Pangea
   description: Giving For Global Change
   site: www.pangeagiving.org
+
+foo:
+  name: foo
+
