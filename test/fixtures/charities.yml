@@ -1,11 +1,11 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
-  name: MyString
-  description: MyText
-  site: MyString
+sample:
+  name: Sample Charity
+  description: This Charity does not exist.
+  site: http://www.1112.net/lastpage.html
 
-two:
-  name: MyString
-  description: MyText
-  site: MyString
+pangea:
+  name: Pangea
+  description: Giving For Global Change
+  site: www.pangeagiving.org
