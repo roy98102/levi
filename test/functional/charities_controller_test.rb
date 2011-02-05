@@ -1,8 +1,11 @@
 require 'test_helper'
 
 class CharitiesControllerTest < ActionController::TestCase
+  fixtures :charities
+
   setup do
-    @charity = charities(:one)
+    @charity = charities(:sample)
+    @new_charity = {:name => "unique", :site=> "foo"}
   end
 
   test "should get index" do
@@ -16,12 +19,20 @@ class CharitiesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should create charity" do
+  test "should create unique new charity" do
     assert_difference('Charity.count') do
-      post :create, :charity => @charity.attributes
+      post :create, :charity => @new_charity
     end
 
     assert_redirected_to charity_path(assigns(:charity))
+  end
+
+  test "should not re-create charity" do
+    assert_no_difference('Charity.count') do
+      post :create, :charity => @charity.attributes
+    end
+
+    assert_template 'new'
   end
 
   test "should show charity" do
