@@ -23,6 +23,7 @@ Thumbs.db
 *.swp
 _ReSharper*
 .svn/
+*.tmproj
 
 # Drop all images, to keep file sizes small.
 *.jpg
