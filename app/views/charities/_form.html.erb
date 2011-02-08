@@ -1,3 +1,5 @@
+
+
 <%= form_for(@charity) do |f| %>
   <% if @charity.errors.any? %>
     <div id="error_explanation">
@@ -20,13 +22,14 @@
     <%= f.text_area :description %>
   </div>
   <div class="field">
-    <%= f.label :site %><br />
+    <%= f.label :site, "Website (URL)" %><br />
     <%= f.text_field :site %>
   </div>
   <div class="field">
-    <%= f.label :logo %><br />
-    <%= f.text_field :logo %>
+    <%= f.label :logo, "Logo (URL)" %><br />
+    <%= f.text_field :logo, :onchange=>"$('charity_logo_img').src=this.value;" %>
   </div>
+    <img id="charity_logo_img" src="<%= @charity.logo %>" alt="logo" title="logo" />
   <div class="actions">
     <%= f.submit %>
   </div>
