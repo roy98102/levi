@@ -25,18 +25,8 @@ def validate_uri(model, attr, uri)
     return
   end
   begin
-    parsed = URI.parse(uri)
-    if parsed.path.empty?
-      uri += '/'
-      parsed = URI.parse(uri)
-    end
-    http = Net::HTTP.new(parsed.host, parsed.port)
-    code = http.request_head(parsed.path).code
-    if code != '200'
-      # Try a slower method, with redirection.
-      code = resolve(uri).code
-    end
-    model.errors.add(attr, "could not be found at '#{uri}' (error #{code})") if code != '200'
+    resolved_uri, code = resolve(uri)
+    model.errors.add(attr, "could not be found at '#{resolved_uri}' (error #{code})") if code != '200'
   rescue Exception => e
     logger.error("During Charity validation for '#{attr}' attr,\n\tGET #{uri} -> " + e.to_s)
     model.errors.add(attr, "could not be reached at '#{uri}'")
@@ -55,9 +45,12 @@ def resolve(url, redirect_limit=5)
   raise TooManyRedirects if redirect_limit < 0
 
   parsed = URI.parse(url)
-  logger.info("parsed:'#{parsed}'")
-  response = Net::HTTP.get_response(parsed)
-  #logger.info("response:'#{response.to_s}'")
+  if parsed.path.empty?
+    parsed = URI.parse(url + '/')
+  end
+  #logger.info("parsed:'#{parsed}'")
+  http = Net::HTTP.new(parsed.host, parsed.port)
+  response = http.request_head(parsed.path)
 
   #logger.info "redirect limit: #{redirect_limit}"
   #logger.info "response code: #{response.code}"
@@ -65,11 +58,11 @@ def resolve(url, redirect_limit=5)
 
   if response.kind_of?(Net::HTTPRedirection)      
     next_url = redirect_url(response)
-    #logger.info "redirect found, headed to #{url}"
+    #logger.info "redirect found, headed to #{next_url}"
     return resolve(next_url, redirect_limit-1)
   end
   
-  return response
+  return url, response.code
 end
 
 
