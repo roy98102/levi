@@ -5,7 +5,7 @@ class CharitiesControllerTest < ActionController::TestCase
 
   setup do
     @charity = charities(:sample)
-    @new_charity = {:name => "unique", :site=> "foo"}
+    @new_charity = {:name => "unique"}
   end
 
   test "should get index" do
