@@ -26,6 +26,6 @@ _ReSharper*
 *.tmproj
 
 # Drop all images, to keep file sizes small.
-*.jpg
-*.gif
-*.png
+#*.jpg
+#*.gif
+#*.png
