@@ -2,20 +2,22 @@
 
 <table>
   <tr>
+    <th></th>
     <th>Name</th>
     <th>Description</th>
     <th>Site</th>
-    <th></th>
     <th></th>
     <th></th>
   </tr>
 
 <% @charities.each do |charity| %>
   <tr>
+      <% if charity.logo %>
+          <td><%= image_tag charity.logo %></td>
+      <% end %>
     <td><%= charity.name %></td>
     <td><%= charity.description %></td>
-    <td><%= charity.site %></td>
-    <td><%= charity.logo %></td>
+    <td><%= link_to charity.site, charity.site %></td>
     <td><%= link_to 'Show', charity %></td>
     <td><%= link_to 'Edit', edit_charity_path(charity) %></td>
     <td><%= link_to 'Destroy', charity, :confirm => 'Are you sure?', :method => :delete %></td>
