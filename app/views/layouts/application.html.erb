@@ -8,19 +8,21 @@
 <%= csrf_meta_tag %>
 
 <script type = "text/javascript">
+    jQuery.noConflict(); // $() notation will refer to Prototype, not jQuery.
+
     // Define the entry point
-    $(document).ready(function()
+    jQuery(document).ready(function()
     {
         // The DOM (document object model) is constructed
         // We will initialize and run our plugin here
-		$("#s2").hide();
-		$("#s3").hide();
-		
-		$("#s1").delay(2000).fadeOut('slow', function() {  
-			$("#s2").fadeIn('slow', function() {
-				$("#s3").fadeIn('slow');							 
-			});
-		});
+        jQuery("#s2").hide();
+        jQuery("#s3").hide();
+
+        jQuery("#s1").delay(2000).fadeOut('slow', function() {  
+            jQuery("#s2").fadeIn('slow', function() {
+                jQuery("#s3").fadeIn('slow');							 
+            });
+        });
     });
 </script>
 </head>

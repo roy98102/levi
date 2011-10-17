@@ -10,7 +10,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110201060338) do
+ActiveRecord::Schema.define(:version => 20110205043944) do
+
+  create_table "charities", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "site"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "logo"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                               :default => "", :null => false

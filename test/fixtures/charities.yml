@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+sample:
+  name: Sample Charity
+  description: This Charity does not exist.
+  site: http://www.1112.net/lastpage.html
+
+pangea:
+  name: Pangea
+  description: Giving For Global Change
+  site: www.pangeagiving.org
+
+foo:
+  name: foo
+

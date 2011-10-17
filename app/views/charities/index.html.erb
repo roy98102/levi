@@ -1,0 +1,28 @@
+<h1>Listing charities</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Site</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @charities.each do |charity| %>
+  <tr>
+    <td><%= charity.name %></td>
+    <td><%= charity.description %></td>
+    <td><%= charity.site %></td>
+    <td><%= charity.logo %></td>
+    <td><%= link_to 'Show', charity %></td>
+    <td><%= link_to 'Edit', edit_charity_path(charity) %></td>
+    <td><%= link_to 'Destroy', charity, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Charity', new_charity_path %>
