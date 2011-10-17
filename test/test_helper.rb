@@ -4,7 +4,7 @@ require 'rails/test_help'
 
 # Factory girl is not finding test/factories.rb without this:
 require 'factory_girl'
-Factory.find_definitions
+FactoryGirl.find_definitions
 # or:
 #require File.expand_path(File.dirname(__FILE__) + "/factories")
 
