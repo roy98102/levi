@@ -1,4 +1,6 @@
 RoyLevi::Application.routes.draw do
+  resources :charities
+
   #devise_for :users, :controllers => { :registrations => "users/registrations" }
   devise_for :users
 
